@@ -4,7 +4,7 @@
 # Configurations for paths and URLs
 
 # roots
-root = '/home/pi/sakis-tunnel-2021-distance/'
+root = '/home/pi/lemur-audio-player/'
 external_disk = '/media/pi/KINGSTON2/'
 
 # paths to use
@@ -48,4 +48,4 @@ local_mic_uploadlog = "mic_uploadlog.txt"
 #GDRIVE_FOLDER_ID = '1F-kDuVRUCY_HZTpls-HjgoMZfQsHHsFy'  #recordings
 #GDRIVE_FOLDER_ID_LOGS = '1ZhqiXGb0yIBRg-h_UlASro2tIVav0YmO'  #system logs
 
-service_account_file = '/home/pi/sakis-tunnel-2021-distance/service_account.json'
+service_account_file = '/home/pi/lemur-audio-player/service_account.json'

@@ -36,7 +36,7 @@ def ensure_disk_space(logger):
             logger.log_system_status('Main','Disk space on USB getting small! Uploading files already.')
             # But let's not upload all in order not to disturb
             # the functioning of the tunnel for too long..
-            logger.upload_recordings(max_nof_uploads=5)
+            #logger.upload_recordings(max_nof_uploads=5)
 
     elif directory == configs.RECORDINGS_PATH_2:
         # PATH to local directory
@@ -47,7 +47,7 @@ def ensure_disk_space(logger):
         if freeSpace < 0.10: # 10% of the ca. 17 GB of free space on Pi
             logger.log_system_status('Main','Disk space on Pi getting small! Uploading files already.')
             # Pi is so small that we just need them all out.
-            logger.upload_recordings()
+            #logger.upload_recordings()
     else:
         pass
 

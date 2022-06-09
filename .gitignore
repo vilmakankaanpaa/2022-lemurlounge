@@ -11,8 +11,11 @@ token.json
 .*csv
 
 # Recordings of the camera module
-camera-records
-mic-records
+camera-records/*.h264
+mic-records/*.wav
 
 # Print outputs
 output.txt
+
+# Mac OS generated files
+.DS_Store

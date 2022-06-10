@@ -42,7 +42,7 @@ class Logger:
         self.ix_recording = None
         self.ix_folder_today = {}
 
-        #self.gservice = GoogleService()
+        self.gservice = GoogleService()
 
 
     def internet_connected(self):

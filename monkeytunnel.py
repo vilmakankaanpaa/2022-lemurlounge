@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     # Order BCA
     if globals.testMode == 1:
-        globals.mediaorder = [configs.audio2,configs.audio3,configs.audio1]
+        globals.mediaorder = [configs.audio1,configs.audio2,configs.audio3]
 
     elif globals.testMode == 2:
         globals.mediaorder = [configs.video2,configs.video3,configs.video1]

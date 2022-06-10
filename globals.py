@@ -19,7 +19,7 @@ def init():
     # mediaorder = [None, None, None]
 
     global mediafile
-    mediafile = None
+    mefiafile = 'None'
 
     global usingAudio
     usingAudio = False
@@ -53,4 +53,4 @@ def init():
     global periodDelay
     periodDelay = 3 # seconds, delay to stop interactive period and recording after interactions
     global mediaDelay
-    mediaDelay = 3
+    mediaDelay = 1

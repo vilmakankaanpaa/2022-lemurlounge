@@ -121,7 +121,7 @@ class Logger:
         self.ix_switch = switch
         self.ix_switchesOpen = '{}, {}, {}'.format(switchesOpen[0],switchesOpen[1],switchesOpen[2])
         self.ix_voltReadings = '{}, {}, {}'.format(round(volts[0],2), round(volts[1],2), round(volts[2],2))
-        self.ix_content = globals.mediaorder[switch]
+        self.ix_content = globals.mediafile
 
 
     def log_interaction_end(self, endtime):

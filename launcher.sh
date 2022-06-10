@@ -14,6 +14,6 @@
 xdotool mousemove 100 100
 
 # start the monkeytunnel program
-cd /home/pi/sakis-tunnel-2021
+cd /home/pi/lemur-audio-player
 sudo python monkeytunnel.py >> output.txt
 cd /

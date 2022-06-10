@@ -61,19 +61,23 @@ if __name__ == "__main__":
 
     printlog('Main','Starting up monkeytunnel..')
 
-    # Order BCA
     if globals.testMode == 1:
-        globals.mediaorder = [configs.audio1,configs.audio2,configs.audio3]
-
-    elif globals.testMode == 2:
-        globals.mediaorder = [configs.video2,configs.video3,configs.video1]
-
-    elif globals.testMode == 3:
-        globals.mediaorder = [configs.video5,configs.video5,configs.video5]
+        globals.mediafile = configs.audio1
     else:
-        globals.mediaorder = [None, None, None]
+        globals.mediafile = None
 
-    printlog('Main','Mediaorder: {}.'.format(globals.mediaorder))
+    # if globals.testMode == 1:
+    #     globals.mediaorder = [configs.audio1,configs.audio2,configs.audio3]
+    #
+    # elif globals.testMode == 2:
+    #     globals.mediaorder = [configs.video2,configs.video3,configs.video1]
+    #
+    # elif globals.testMode == 3:
+    #     globals.mediaorder = [configs.video5,configs.video5,configs.video5]
+    # else:
+    #     globals.mediaorder = [None, None, None]
+
+    # printlog('Main','Mediaorder: {}.'.format(globals.mediaorder))
 
     logger = Logger()
     camera = Camera()

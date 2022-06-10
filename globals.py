@@ -15,8 +15,11 @@ def init():
     global ordername
     ordername = 'None'
 
-    global mediaorder
-    mediaorder = [None, None, None]
+    # global mediaorder
+    # mediaorder = [None, None, None]
+
+    global mediafile
+    mediafile = None
 
     global usingAudio
     usingAudio = False

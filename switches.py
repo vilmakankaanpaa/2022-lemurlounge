@@ -18,8 +18,8 @@ class Switches():
         self.monkeyInside = False
         self.switchesOpen = [False, False, False]
         self.switchPlaying = None
-        self.queue = None
-        self.second_queue = None # for rare cases of X is changed to Y but X is still kept open: when Y closes, X should be put back
+        self.queue = None # Use the queue to store the switch number?
+        #self.second_queue = None # for rare cases of X is changed to Y but X is still kept open: when Y closes, X should be put back
         self.starttime = None
         self.endtime = None
         self.delay = globals.mediaDelay # seconds
@@ -58,9 +58,9 @@ class Switches():
         if self.queue != None:
             self.switchPlaying = self.queue
             self.queue = None
-        elif self.second_queue != None:
-            self.switchPlaying = self.second_queue
-            self.second_queue = None
+        # elif self.second_queue != None:
+        #     self.switchPlaying = self.second_queue
+        #     self.second_queue = None
         else:
             # Media switching too fast and the system variables are maybe not up to date
             return
@@ -84,7 +84,10 @@ class Switches():
 
         sleep(0.2)
 
-        filename = globals.mediaorder[self.switchPlaying]
+        #filename = globals.mediaorder[self.switchPlaying]
+        # Just using one audio file at any one time
+        filename = globals.mediafile
+
         if globals.usingAudio:
             printlog('Switches','Playing audio {}.'.format(filename))
             filepath = configs.audiopath + filename + '.mp3'
@@ -139,41 +142,73 @@ class Switches():
         sleep(0.2)
 
 
-    def changeSwitch(self):
-    # For cases when switch X is palying but the switch Y will be turned on.
-        changedSwitch = self.switchPlaying
-
-        self.turnOff()
-        self.turnOn()
-
-        if self.switchesOpen[changedSwitch]:
-            # switch that was turned off is still open
-            self.second_queue = changedSwitch
+    # def changeSwitch(self):
+    # # For cases when switch X is palying but the switch Y will be turned on.
+    #     changedSwitch = self.switchPlaying
+    #
+    #     self.turnOff()
+    #     self.turnOn()
+    #
+    #     if self.switchesOpen[changedSwitch]:
+    #         # switch that was turned off is still open
+    #         self.second_queue = changedSwitch
 
 
     def update(self):
 
+        # Update the status of the sensor readings by checking them all.
         self.switchesOpen, mostRecentOpen, anyChanged, self.sensorVolts = self.sensors.update()
 
         if not self.monkeyInside and any(self.switchesOpen):
             printlog('Main','Monkey came in!')
             self.monkeyInside = True
+
         elif self.monkeyInside and not any(self.switchesOpen):
             printlog('Main','All monkeys left. :(')
             self.monkeyInside = False
 
-        if self.queue != None:
-            if self.switchesOpen[self.queue] != True:
-                # Switch set in queue earlier is no longer open
-                self.queue = None
-
         if mostRecentOpen != None:
-            if mostRecentOpen != self.switchPlaying:
-                # Set switch that was opened to the queue
-                self.queue = mostRecentOpen
+            self.queue = mostRecentOpen
+
+        # if self.queue != None:
+        #     if self.switchesOpen[self.queue] != True:
+        #         # Switch set in queue earlier is no longer open
+        #         self.queue = None
+        #
+        # if mostRecentOpen != None:
+        #     if mostRecentOpen != self.switchPlaying:
+        #         # Set switch that was opened to the queue
+        #         self.queue = mostRecentOpen
 
 
     def manageMedia(self):
+
+        # 1. Sensors fired but stimuli not playing --> Start
+        # 2. Stimuli playing but sensors not fired
+            # 2.1. Delay has not passed --> keep playing
+            # 2.2. Delay passed --> stop playing
+
+        try:
+
+            if self.switchPlaying == None:
+                # media is not currently playing
+                if self.queue != None:
+                    # Turn media on
+                    self.turnOn()
+            else:
+                # media is currently playing
+                if not any(self.switchesOpen):
+                    if self.delayPassed():
+                        self.turnOff()
+                else:
+                    # the media is playing and switches are open, don't turn off
+                    pass
+
+        except Exception as e:
+            printlog('Switches','ERROR with updating media: {}'.format(type(e).__name__, e))
+            self.logger.log_system_status('Switches','ERROR with updating media: {}'.format(type(e).__name__, e))
+
+
     # 1. Switch on queue but no switches playing media
     #       -> Turn on
     # 2. Switch on queue but it's already playing
@@ -184,47 +219,47 @@ class Switches():
     # 5. No queue (new switches), delay passed, switch closed; But a switch that was changed from previously is still open in second_queue. -> switch back to this switch.
     # 6. All switches closed but one is playing
     #       -> Check if delay has passed -> continue or stop playing
-        try:
-
-            if self.switchPlaying == None:
-                # media is not currently playing
-                if self.queue != None:
-                    # Turn new switch on
-                    self.turnOn()
-            else:
-                # media is currently playing
-                if self.queue != None:
-                    if self.delayPassed():
-                        self.changeSwitch()
-                else:
-                    # queue is empty
-                    if not any(self.switchesOpen):
-                        # all switches closed too
-                        if self.delayPassed():
-                            self.turnOff()
-                    else:
-                        # either the switch currently playing is open or another one
-                            # must be in second_queue
-                        if not self.switchesOpen[self.switchPlaying]:
-                            # the switch playing is not open anymore, but another switch is
-                            if self.second_queue != None:
-                                if self.delayPassed():
-                                    self.changeSwitch()
-                            else:
-                                # Weird case: no queue but something else than the current one playing is open.
-                                # Just change to play the switch that is detected open.
-                                printlog('Switches','Weird case: no queue but something else than the current one playing is open')
-                                for i in range(0,len(self.switchesOpen)):
-                                    if self.switchPlaying == i:
-                                        continue
-                                    if self.switchesOpen[i]:
-                                        if self.delayPassed():
-                                            self.second_queue = i
-                                            self.changeSwitch()
-                        else:
-                            # the switch playing is still open, don't turn off
-                            pass
-
-        except Exception as e:
-            printlog('Switches','ERROR with updating media: {}'.format(type(e).__name__, e))
-            self.logger.log_system_status('Switches','ERROR with updating media: {}'.format(type(e).__name__, e))
+        # try:
+        #
+        #     if self.switchPlaying == None:
+        #         # media is not currently playing
+        #         if self.queue != None:
+        #             # Turn new switch on
+        #             self.turnOn()
+        #     else:
+        #         # media is currently playing
+        #         if self.queue != None:
+        #             if self.delayPassed():
+        #                 self.changeSwitch()
+        #         else:
+        #             # queue is empty
+        #             if not any(self.switchesOpen):
+        #                 # all switches closed too
+        #                 if self.delayPassed():
+        #                     self.turnOff()
+        #             else:
+        #                 # either the switch currently playing is open or another one
+        #                     # must be in second_queue
+        #                 if not self.switchesOpen[self.switchPlaying]:
+        #                     # the switch playing is not open anymore, but another switch is
+        #                     if self.second_queue != None:
+        #                         if self.delayPassed():
+        #                             self.changeSwitch()
+        #                     else:
+        #                         # Weird case: no queue but something else than the current one playing is open.
+        #                         # Just change to play the switch that is detected open.
+        #                         printlog('Switches','Weird case: no queue but something else than the current one playing is open')
+        #                         for i in range(0,len(self.switchesOpen)):
+        #                             if self.switchPlaying == i:
+        #                                 continue
+        #                             if self.switchesOpen[i]:
+        #                                 if self.delayPassed():
+        #                                     self.second_queue = i
+        #                                     self.changeSwitch()
+        #                 else:
+        #                     # the switch playing is still open, don't turn off
+        #                     pass
+        #
+        # except Exception as e:
+        #     printlog('Switches','ERROR with updating media: {}'.format(type(e).__name__, e))
+        #     self.logger.log_system_status('Switches','ERROR with updating media: {}'.format(type(e).__name__, e))

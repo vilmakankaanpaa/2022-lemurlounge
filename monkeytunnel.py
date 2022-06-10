@@ -36,7 +36,7 @@ def ensure_disk_space(logger):
             logger.log_system_status('Main','Disk space on USB getting small! Uploading files already.')
             # But let's not upload all in order not to disturb
             # the functioning of the tunnel for too long..
-            #logger.upload_recordings(max_nof_uploads=5)
+            logger.upload_recordings(max_nof_uploads=5)
 
     elif directory == configs.RECORDINGS_PATH_2:
         # PATH to local directory
@@ -47,7 +47,7 @@ def ensure_disk_space(logger):
         if freeSpace < 0.10: # 10% of the ca. 17 GB of free space on Pi
             logger.log_system_status('Main','Disk space on Pi getting small! Uploading files already.')
             # Pi is so small that we just need them all out.
-            #logger.upload_recordings()
+            logger.upload_recordings()
     else:
         pass
 
@@ -104,8 +104,8 @@ if __name__ == "__main__":
         logger.log_program_run_info()
         logger.log_system_status('Main','Tunnel started.')
 
-        #logger.upload_recordings(5)
-        #logger.upload_mic_recordings(5)
+        logger.upload_recordings(5)
+        logger.upload_mic_recordings(5)
 
         printlog('Main','Ready for use!')
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
 
             # Checking if should update the request quota for Google Sheets
             # It is 100 requests per 100 seconds (e.g. logging of 100 rows)
-            #logger.gservice.check_quota_timer()
+            logger.gservice.check_quota_timer()
 
             # Checks the state of switches and handles what to do with media: should it start or stop or content switched.
             # Also logs when interaction starts and ends.
@@ -160,7 +160,7 @@ if __name__ == "__main__":
                 if not activated and timeSinceIx > 1:
                     # Upload data logs after some time passed since activity
                     printlog('Main','Uploading data from ix logs..')
-                    #logger.upload_ix_logs()
+                    logger.upload_ix_logs()
                     uploadData_timer = datetime.now()
 
             # Check disk space every 20 minutes
@@ -180,8 +180,8 @@ if __name__ == "__main__":
                         # During these hours, only check about 4 times if there are any
                         # videos / logfiles to upload
                         printlog('Main','Starting to upload files from today.')
-                        #logger.upload_recordings(5)
-                        #logger.upload_mic_recordings(5)
+                        logger.upload_recordings(5)
+                        logger.upload_mic_recordings(5)
 
                         if not logfilesUploadedToday:
                             # do this only once a day
@@ -203,7 +203,7 @@ if __name__ == "__main__":
 
         try:
             logger.log_system_status('Exit','Exiting program.')
-            #logger.upload_ix_logs()
+            logger.upload_ix_logs()
         except:
             pass
 

@@ -97,7 +97,8 @@ class Logger:
         #data = [data]
 
         # Log locally, for offline use only
-        filemanager.log_local(data, configs.local_program_log)
+        for row in data: 
+          filemanager.log_local(row, configs.local_program_log)
 
         # try:
         #     self.test_ie_for_logging()

@@ -79,7 +79,7 @@ class Switches():
                 printlog('Switches','Starting to record.')
 
             except Exception as e:
-                printlog('Switches','ERROR: Could not start recording. {}'.format(type(e).__name__, e))
+                printlog('Switches','ERROR: Could not start recording cam. {}'.format(type(e).__name__, e))
                 self.logger.log_system_status('Switches','ERROR: Could not start recording. {}'.format(type(e).__name__, e))
 
         sleep(0.2)

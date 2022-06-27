@@ -94,7 +94,7 @@ class Logger:
 
         # for gdrive.log_to_drive this needs to be in format
         # list(lists); [[row1],[row2],..]
-        data = [data]
+        #data = [data]
 
         # Log locally, for offline use only
         filemanager.log_local(data, configs.local_program_log)
@@ -162,12 +162,14 @@ class Logger:
         self.ix_content = None
 
         # log this data to logal csv file (for full offline use only)
-        filemanager.log_local(self.ix_tempdata, configs.local_ix_log)
+        for row in self.ix_tempdata:
+          filemanager.log_local(row, configs.local_ix_log)
 
 
     def new_recording_name(self):
 
-        self.ix_recording = (self.ix_start).strftime("%Y-%m-%d_%H-%M") + '_' + self.ix_period
+        # change the postfix to ix_period if in use (self.ix_period)
+        self.ix_recording = (self.ix_start).strftime("%Y-%m-%d_%H-%M") + '_' + self.ix_id
         return self.ix_recording
 
 

@@ -3,10 +3,10 @@
 
 import os
 import sys
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from time import sleep
-from datetime import datetime, date, time
-import random
+from datetime import datetime #, date, time
+#import random
 
 # Local sources
 from filemanager import check_disk_space, printlog, get_directory_for_recordings, log_local
@@ -16,7 +16,7 @@ from microphone import Microphone
 from switches import Switches
 import configs
 import globals
-from ir_sensors import Sensors
+#from ir_sensors import Sensors
 
 sys.excepthook = sys.__excepthook__
 
@@ -26,7 +26,7 @@ def ensure_disk_space(logger):
     directory = get_directory_for_recordings()
     # TODO: don't depend on the given directory
     if directory == configs.RECORDINGS_PATH:
-        # Path to the USB
+        # Path is to the USB
 
         freeSpace = check_disk_space(configs.external_disk)
         logger.log_system_status('Main','Directory {}, free: {}'.format(directory, freeSpace))
@@ -38,10 +38,10 @@ def ensure_disk_space(logger):
             # the functioning of the tunnel for too long..
             logger.upload_recordings(max_nof_uploads=5)
 
-    elif directory == configs.RECORDINGS_PATH_2:
+    elif directory == configs.RECORDINGS_PATH_backup:
         # PATH to local directory
 
-        logger.log_system_status('Main','Issue: Camera is recording local folder.')
+        logger.log_system_status('Main','Issue: Camera is recording to local folder.')
         freeSpace = check_disk_space(configs.root)
         printlog('Main','Directory {}, free: {}'.format(directory, freeSpace))
         if freeSpace < 0.10: # 10% of the ca. 17 GB of free space on Pi

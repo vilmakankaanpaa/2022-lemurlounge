@@ -5,12 +5,13 @@
 
 # roots
 root = '/home/pi/lemur-audio-player/'
-external_disk = '/media/pi/KINGSTON2/'
+external_disk = '/media/pi/8F57-C519/'
 
 # paths to use
 RECORDINGS_PATH = external_disk + 'camera-records/'
-RECORDINGS_PATH_2 = root + 'camera-records/'
-MIC_RECORDINGS = root + 'mic-records/'
+RECORDINGS_PATH_backup = root + 'camera-records/'
+MIC_RECORDINGS = external_disk + 'mic-records/'
+MIC_RECORDINGS_backup = root + 'mic-records/'
 
 # file names
 audiopath = root + 'audio/'
@@ -19,6 +20,7 @@ audiopath = root + 'audio/'
 audio1 = 'rain'
 audio2 = 'traffic'
 audio3 = 'music'
+
 # video files
 videopath = root + 'video/'
 # use 'configs.videopath' + audioX + '.mp4'

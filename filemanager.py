@@ -17,7 +17,10 @@ def printlog(srcfile, msg):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data = [[timestamp, srcfile, msg]]
 
+    # print to a file
     #log_local(data=data, sheet=configs.local_printlog)
+
+    # print to terminal
     print(timestamp,msg)
 
 
@@ -75,7 +78,7 @@ def get_directory_for_recordings():
         return configs.RECORDINGS_PATH
     else:
         printlog('Filemanager','ERROR: Could not access USB drive!')
-        return configs.RECORDINGS_PATH_2
+        return configs.RECORDINGS_PATH_backup
 
 
 def check_disk_space(disk):

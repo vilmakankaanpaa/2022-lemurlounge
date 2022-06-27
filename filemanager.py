@@ -61,7 +61,7 @@ def nof_recordings():
         # there is one file for testing in the folder: test.txt, hence -1
         return len(dirContent)-1
     else:
-        dirContent = os.listdir(configs.RECORDINGS_PATH_2)
+        dirContent = os.listdir(configs.RECORDINGS_PATH_backup)
         return len(dirContent)
 
 

@@ -31,13 +31,16 @@ video3 = 'abstract'
 video5 = 'black'
 
 # local logfile names
-local_ix_log = 'ix_backup.csv'
-local_program_log = 'progrun_backup.csv'
+# local_ix_log = 'ix_backup.csv'
+# local_program_log = 'progrun_backup.csv'
+local_ix_log = 'ix_logs.csv'
+local_program_log = 'progrun_logs.csv'
+local_system_log = 'system_logs.csv'
 local_printlog = 'printlog.csv'
 local_output = 'output.txt'
 # To store file names not being able to upload
-local_uploadlog = "uploadlog.txt"
-local_mic_uploadlog = "mic_uploadlog.txt"
+# local_uploadlog = "uploadlog.txt"
+# local_mic_uploadlog = "mic_uploadlog.txt"
 
 # Google sheets API parameters for logging data
 SPREADSHEET_ID = '1qh6czdoIkbHTeeRIu6tQZmIGVsXYSKScXbcqotv6nMU'

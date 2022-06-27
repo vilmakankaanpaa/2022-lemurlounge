@@ -68,7 +68,9 @@ def nof_recordings():
 def check_usb_disk_access():
     # can e.g. check whether usb is connected via if you can access the test.txt init
     path = configs.RECORDINGS_PATH + 'test.txt'
+    print(path)
     exists = os.path.exists(path)
+    print(exists)
     return exists
 
 

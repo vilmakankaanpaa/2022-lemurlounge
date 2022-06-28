@@ -56,11 +56,11 @@ def check_for_reboot():
 
   printlog('Main','Rebootcheck')
   date = datetime.now().minute # TODO: change to date
-  hour = date.second  # TODO: change to hour
+  hour = datetime.now().second  # TODO: change to hour
 
   if date in globals.periodDates:
     # reboot on one of the marked dates
-    if hour >= 0 and hour < 3:
+    if hour >= 0 and hour < 20:
       # only between these hours
       #if runtime > 60: #TODO this
         # only if have been running more time this time (to avoid rebooting twice in row)

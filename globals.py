@@ -27,10 +27,10 @@ def init():
 
     # Dates are start date of the condition
     # for testing use minutes:
-    period1 = 5 # datetime.date.fromisoformat(configs.period1Date) where e.g. congis.period1Date = '2022-06-31'
-    period2 = 7
-    period3 = 9
-    period4 = 11
+    period1 = 14 # datetime.date.fromisoformat(configs.period1Date) where e.g. congis.period1Date = '2022-06-31'
+    period2 = 15
+    period3 = 16
+    period4 = 17
 
     global periodDates 
     # periodDates = [

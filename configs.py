@@ -20,6 +20,7 @@ audiopath = root + 'audio/'
 audio1 = 'rain'
 audio2 = 'traffic'
 audio3 = 'music'
+audio4 = 'whitenoise'
 
 # video files
 videopath = root + 'video/'

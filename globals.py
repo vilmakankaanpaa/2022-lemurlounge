@@ -23,7 +23,7 @@ def init():
 
     # Conditions: 4 audio conditions (white noise included)
     global mediafile
-    today = datetime.now().date().minute #datetime.now().date()
+    today = datetime.now().minute #datetime.now().date()
 
     # Dates are start date of the condition
     # for testing use minutes:

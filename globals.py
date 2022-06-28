@@ -15,8 +15,8 @@ def init():
     global testMode
     testMode = 1
 
-    # global ordername
-    # ordername = 'None'
+    global ordername
+    ordername = 'None'
 
     # global mediaorder
     # mediaorder = [None, None, None]

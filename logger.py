@@ -12,7 +12,7 @@ from datetime import datetime, date
 import configs
 import globals
 import filemanager
-# from filemanager import printlog
+from filemanager import printlog
 # from googleservice import GoogleService
 
 sys.excepthook = sys.__excepthook__
@@ -162,7 +162,11 @@ class Logger:
         self.ix_content = None
 
         # log this data to logal csv file (for full offline use only)
-        filemanager.log_local(self.ix_tempdata, configs.local_ix_log)
+        try:
+          filemanager.log_local(self.ix_tempdata, configs.local_ix_log)
+          self.ix_tempdata = []
+        except Exception as e:
+          printlog('Logger','ERROR: Could not log ix data: {}, {}'.format(type(e).__name__, e))
 
 
     def new_recording_name(self):

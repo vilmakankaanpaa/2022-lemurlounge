@@ -33,9 +33,9 @@ video5 = 'black'
 # local logfile names
 # local_ix_log = 'ix_backup.csv'
 # local_program_log = 'progrun_backup.csv'
-local_ix_log = 'ix_logs.csv'
-local_program_log = 'progrun_logs.csv'
-local_system_log = 'system_logs.csv'
+local_ix_log = external_disk + 'logs/ix_logs.csv'
+local_program_log = external_disk + 'logs/progrun_logs.csv'
+local_system_log = external_disk + 'logs/system_logs.csv'
 local_printlog = 'printlog.csv'
 local_output = 'output.txt'
 # To store file names not being able to upload

@@ -142,7 +142,7 @@ if __name__ == "__main__":
                 if timeSinceActivity > globals.periodDelay:
                     # delay has passed
 
-                    #logger.end_ixPeriod()
+                    logger.end_ixPeriod()
 
                     if globals.recordingOn and camera.is_recording:
                         try:

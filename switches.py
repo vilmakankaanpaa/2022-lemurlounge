@@ -48,9 +48,9 @@ class Switches():
     def turnOn(self):
     # Turn media on
 
-        # if self.logger.ix_period == None:
-        #     # First interaction of the new interactive period
-        #     self.logger.start_ixPeriod()
+        if self.logger.ix_period == None:
+            # First interaction of the new interactive period
+            self.logger.start_ixPeriod()
 
         self.starttime = datetime.now()
         self.endtime = None

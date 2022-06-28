@@ -31,6 +31,13 @@ video2 = 'worms'
 video3 = 'abstract'
 video5 = 'black'
 
+# dates for switching media
+period1Date = '2022-07-1'
+period2Date = '2022-07-5'
+period3Date = '2022-07-9'
+period4Date = '2022-08-13'
+# ....
+
 # local logfile names
 # local_ix_log = 'ix_backup.csv'
 # local_program_log = 'progrun_backup.csv'

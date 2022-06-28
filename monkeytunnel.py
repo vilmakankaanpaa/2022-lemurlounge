@@ -51,6 +51,23 @@ sys.excepthook = sys.__excepthook__
 #     else:
 #         pass
 
+def check_for_reboot():
+  # TODO timer for reboot checking? Only at the night time when doing the sleeping?
+
+  printlog('Main','Rebootcheck')
+  date = datetime.now().minute # TODO: change to date
+  hour = date.second  # TODO: change to hour
+
+  if date in globals.periodDates:
+    # reboot on one of the marked dates
+    if hour >= 0 and hour < 3:
+      # only between these hours
+      #if runtime > 60: #TODO this
+        # only if have been running more time this time (to avoid rebooting twice in row)
+        logger.log_system_status('Main','Time to switch media. Rebooting!')
+        os.system('sudo shutdown -r now')
+
+
 
 if __name__ == "__main__":
 
@@ -128,6 +145,10 @@ if __name__ == "__main__":
                 #ping every 10 minutes
                 logger.log_system_status('Main','Time when last activity ended: {}.'.format(lastActivity))
                 printlog('Main','Still alive!')
+                              
+                #TODO: do its own timer?
+                check_for_reboot()
+                
                 pingTimer = datetime.now()
 
             # Checking if should update the request quota for Google Sheets

@@ -27,10 +27,21 @@ def init():
 
     # Dates are start date of the condition
     # for testing use minutes:
-    period1 = 30 # datetime.date.fromisoformat(congigs.period1Date) where e.g. congis.period1Date = '2022-06-31'
-    period2 = 33
-    period3 = 37
-    period4 = 40
+    period1 = 1 # datetime.date.fromisoformat(configs.period1Date) where e.g. congis.period1Date = '2022-06-31'
+    period2 = 3
+    period3 = 5
+    period4 = 7
+
+    global periodDates 
+    # periodDates = [
+    #   datetime.date.fromisoformat(configs.period1Date),
+    #   datetime.date.fromisoformat(configs.period2Date),
+    #   datetime.date.fromisoformat(configs.period3Date),
+    #   datetime.date.fromisoformat(configs.period4Date)
+    # ]
+    periodDates = [
+      period1,period2,period3,period4
+    ]
     
     if today >= period4:
       mediafile = configs.audio4

@@ -141,7 +141,7 @@ if __name__ == "__main__":
 
         while True:
 
-            if (datetime.now() - pingTimer).total_seconds() / 60 > 10:
+            if (datetime.now() - pingTimer).total_seconds() > 10: # TODO: was / 60 > 10
                 #ping every 10 minutes
                 logger.log_system_status('Main','Time when last activity ended: {}.'.format(lastActivity))
                 printlog('Main','Still alive!')

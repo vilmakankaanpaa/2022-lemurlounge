@@ -227,8 +227,7 @@ if __name__ == "__main__":
         ix_data = logger.ix_tempdata
         if len(ix_data) != 0:
             printlog('Exit','Logging ix data to csv.')
-            # timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            # file = timestamp + '_ix_backup.csv'
-            # TODO: double check this works if exits in middle of interaction
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            file = timestamp + '_ix_backup.csv'
             for row in ix_data:
-              log_local(row, sheet=configs.local_ix_log)
+              log_local(ix_data, sheet=file)

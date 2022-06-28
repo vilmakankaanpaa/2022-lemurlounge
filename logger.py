@@ -70,7 +70,7 @@ class Logger:
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         data = [timestamp, src, msg]
-        filemanager.log_local(data, configs.local_system_log)
+        filemanager.log_local([data], configs.local_system_log)
         # try:
         #     self.test_ie_for_logging()
         #     self.gservice.log_to_drive([data], 'system')
@@ -94,11 +94,10 @@ class Logger:
 
         # for gdrive.log_to_drive this needs to be in format
         # list(lists); [[row1],[row2],..]
-        #data = [data]
+        data = [data]
 
         # Log locally, for offline use only
-        for row in data: 
-          filemanager.log_local(row, configs.local_program_log)
+        filemanager.log_local(data, configs.local_program_log)
 
         # try:
         #     self.test_ie_for_logging()
@@ -163,8 +162,7 @@ class Logger:
         self.ix_content = None
 
         # log this data to logal csv file (for full offline use only)
-        for row in self.ix_tempdata:
-          filemanager.log_local(row, configs.local_ix_log)
+        filemanager.log_local(self.ix_tempdata, configs.local_ix_log)
 
 
     def new_recording_name(self):

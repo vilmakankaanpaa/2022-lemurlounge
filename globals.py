@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 
+from datetime import datetime
+import configs
+
 # Global variables
 def init():
 
@@ -12,14 +15,33 @@ def init():
     global testMode
     testMode = 1
 
-    global ordername
-    ordername = 'None'
+    # global ordername
+    # ordername = 'None'
 
     # global mediaorder
     # mediaorder = [None, None, None]
 
+    # Conditions: 4 audio conditions (white noise included)
     global mediafile
-    mefiafile = 'None'
+    today = datetime.now().date().minute #datetime.now().date()
+
+    # Dates are start date of the condition
+    # for testing use minutes:
+    period1 = 30 # datetime.date.fromisoformat(congigs.period1Date) where e.g. congis.period1Date = '2022-06-31'
+    period2 = 33
+    period3 = 37
+    period4 = 40
+    
+    if today >= period4:
+      mediafile = configs.audio4
+    elif today >= period3:
+      mediafile = configs.audio3
+    elif today >= period2:
+      mediafile = configs.audio2
+    elif today >= period1:
+      mediafile = configs.audio1
+    else:
+      mediafile = None
 
     global usingAudio
     usingAudio = False

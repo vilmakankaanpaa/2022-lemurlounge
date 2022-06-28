@@ -61,10 +61,22 @@ if __name__ == "__main__":
 
     printlog('Main','Starting up monkeytunnel..')
 
-    if globals.testMode == 1:
-        globals.mediafile = configs.audio1
-    else:
-        globals.mediafile = None
+    # if testmode == 1: 
+        # choose audiofile based on date
+
+        # if date >= X and <= Y:
+          # second to last..
+          # mediafile == configs.audio
+        # elif date >= K:
+          # ....
+        
+    # else:
+        # audiofile = none
+
+    # if globals.testMode == 1:
+    #     globals.mediafile = configs.audio1
+    # else:
+    #     globals.mediafile = None
 
     # if globals.testMode == 1:
     #     globals.mediaorder = [configs.audio1,configs.audio2,configs.audio3]
@@ -78,6 +90,7 @@ if __name__ == "__main__":
     #     globals.mediaorder = [None, None, None]
 
     # printlog('Main','Mediaorder: {}.'.format(globals.mediaorder))
+
 
     logger = Logger()
     camera = Camera()

@@ -31,7 +31,10 @@ class Switches():
         self.camera = camera
         self.mic = mic
 
+        self.audioFilePath = configs.audiopath + globals.mediafile + '.mp3'
         globals.audioPlayer = AudioPlayer()
+        globals.audioPlayer.load_audio(self.audioFilePath)
+
         globals.videoPlayer = None
 
 
@@ -86,16 +89,14 @@ class Switches():
 
         #filename = globals.mediaorder[self.switchPlaying]
         # Just using one audio file at any one time
-        filename = globals.mediafile
 
         if globals.usingAudio:
-            printlog('Switches','Playing audio {}.'.format(filename))
-            filepath = configs.audiopath + filename + '.mp3'
-
+            printlog('Switches','Playing audio {}.'.format(globals.mediafile))
             try:
                 if globals.audioPlayer.has_quit():
                     globals.audioPlayer = AudioPlayer()
-                globals.audioPlayer.play_audio(filepath)
+                    globals.audioPlayer.load_audio(self.audioFilePath)
+                globals.audioPlayer.play_audio()
 
             except Exception as e:
                 printlog('Switches','ERROR: Could not start audio. {}'.format(type(e).__name__, e))

@@ -50,7 +50,7 @@ class Switches():
     def triggerAudioChange(self):
 
       self.audioFilePath = configs.audiopath + globals.mediafile + '.mp3'
-      globals.audioPlayer.change_audio(self.audioFilePath)
+      globals.audioPlayer.load_audio(self.audioFilePath)
 
     def turnOn(self):
     # Turn media on

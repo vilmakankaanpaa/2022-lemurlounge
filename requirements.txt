@@ -4,4 +4,4 @@ omxplayer-wrapper==0.3.3
 #mpyg321==1.1.0
 apiclient==1.0.4
 google-api-python-client==1.11.0
-pygame==1.9.4.post1python
+pygame==1.9.4.post1

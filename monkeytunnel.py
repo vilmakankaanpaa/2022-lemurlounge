@@ -72,7 +72,7 @@ def update_mediafile(switches):
   elif today >= period1:
     media = configs.audio1
   else:
-    media = None
+    media = configs.audio4 #default to whitenoise
 
   if globals.mediafile != media:
     globals.mediafile = media
@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
     try:
         switches = Switches(logger, camera, mic)
-        update_mediafile() # pick the correct media to use
+        update_mediafile(switches) # pick the correct media to use
 
         logger.log_program_run_info()
         logger.log_system_status('Main','Tunnel started.')

@@ -25,10 +25,6 @@ class AudioPlayer:
       mixer.music.play(loops=-1)
       mixer.music.pause()
 
-    def change_audio(self, audioFile):
-      mixer.music.unload()
-      self.load_audio(audioFile)
-
     def play_audio(self):
       mixer.music.unpause()
 

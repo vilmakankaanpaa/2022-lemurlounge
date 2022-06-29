@@ -125,7 +125,7 @@ class Switches():
 
         if globals.audioPlayer.is_playing():
             printlog('Switches','Turning audio off.'.format(self.switchPlaying))
-            globals.audioPlayer.stop()
+            globals.audioPlayer.stop_audio()
 
         if globals.videoPlayer != None:
             printlog('Switches','Turning video off.'.format(self.switchPlaying))

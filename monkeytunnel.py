@@ -256,7 +256,7 @@ if __name__ == "__main__":
 
         if globals.audioPlayer.is_playing():
             printlog('Exit','Stopping audio.')
-            globals.audioPlayer.stop()
+            globals.audioPlayer.stop_audio()
 
         ix_data = logger.ix_tempdata
         if len(ix_data) != 0:

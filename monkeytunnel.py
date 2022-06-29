@@ -52,7 +52,7 @@ sys.excepthook = sys.__excepthook__
 #         pass
 
 
-def update_mediafile():
+def update_mediafile(switches):
 
   today = datetime.now().minute #datetime.now().date()
 
@@ -76,7 +76,7 @@ def update_mediafile():
 
   if globals.mediafile != media:
     globals.mediafile = media
-    Switches.triggerAudioChange()
+    switches.triggerAudioChange()
 
 
 # def check_for_reboot():
@@ -178,7 +178,7 @@ if __name__ == "__main__":
 
             if (datetime.now() - mediaUpdateTimer).total_seconds() / 60 > 1: 
               #check every minute TODO: change this
-              update_mediafile()
+              update_mediafile(switches)
               mediaUpdateTimer = datetime.now()
 
             # Checking if should update the request quota for Google Sheets

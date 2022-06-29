@@ -23,7 +23,7 @@ def init():
 
     # Conditions: 4 audio conditions (white noise included)
     global mediafile
-    mediafile = None
+    mediafile = configs.audio4 # white noise as default
     # today = datetime.now().minute #datetime.now().date()
 
     # Dates are start date of the condition

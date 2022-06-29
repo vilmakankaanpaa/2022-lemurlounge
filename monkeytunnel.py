@@ -74,7 +74,10 @@ def update_mediafile():
   else:
     media = None
 
-  globals.mediafile = media
+  if globals.mediafile != media:
+    globals.mediafile = media
+    Switches.triggerAudioChange()
+
 
 # def check_for_reboot():
 #   # TODO timer for reboot checking? Only at the night time when doing the sleeping?

@@ -51,23 +51,46 @@ sys.excepthook = sys.__excepthook__
 #     else:
 #         pass
 
-def check_for_reboot():
-  # TODO timer for reboot checking? Only at the night time when doing the sleeping?
 
-  printlog('Main','Rebootcheck')
-  date = datetime.now().minute # TODO: change to date
-  hour = datetime.now().second  # TODO: change to hour
+def update_mediafile():
 
-  if date in globals.periodDates:
-    # reboot on one of the marked dates
-    if hour >= 0 and hour < 20:
-      # only between these hours
-      #if runtime > 60: #TODO this
-        # only if have been running more time this time (to avoid rebooting twice in row)
-        logger.log_system_status('Main','Time to switch media. Rebooting!')
-        os.system('sudo shutdown -r now')
+  today = datetime.now().minute #datetime.now().date()
 
+  # Dates are start date of the condition
+  # for testing use minutes:
+  period1 = 14 # datetime.date.fromisoformat(configs.period1Date) where e.g. congis.period1Date = '2022-06-31'
+  period2 = 15
+  period3 = 16
+  period4 = 17
+  
+  if today >= period4:
+    media = configs.audio4
+  elif today >= period3:
+    media = configs.audio3
+  elif today >= period2:
+    media = configs.audio2
+  elif today >= period1:
+    media = configs.audio1
+  else:
+    media = None
 
+  globals.mediafile = media
+
+# def check_for_reboot():
+#   # TODO timer for reboot checking? Only at the night time when doing the sleeping?
+
+#   printlog('Main','Rebootcheck')
+#   date = datetime.now().minute # TODO: change to date
+#   hour = datetime.now().second  # TODO: change to hour
+
+#   if date in globals.periodDates:
+#     # reboot on one of the marked dates
+#     if hour >= 0 and hour < 20:
+#       # only between these hours
+#       #if runtime > 60: #TODO this
+#         # only if have been running more time this time (to avoid rebooting twice in row)
+#         logger.log_system_status('Main','Time to switch media. Rebooting!')
+#         os.system('sudo shutdown -r now')
 
 if __name__ == "__main__":
 
@@ -123,6 +146,8 @@ if __name__ == "__main__":
     # Timer to avoid uploading data during and right after interactions
     #ix_timer = datetime.now()
 
+    mediaUpdateTimer = datetime.now()
+
     lastActivity = datetime.now()
     activated = False
 
@@ -130,6 +155,7 @@ if __name__ == "__main__":
 
     try:
         switches = Switches(logger, camera, mic)
+        update_mediafile() # pick the correct media to use
 
         logger.log_program_run_info()
         logger.log_system_status('Main','Tunnel started.')
@@ -141,15 +167,16 @@ if __name__ == "__main__":
 
         while True:
 
-            if (datetime.now() - pingTimer).total_seconds() > 10: # TODO: was / 60 > 10
+            if (datetime.now() - pingTimer).total_seconds() / 60 > 10:
                 #ping every 10 minutes
                 logger.log_system_status('Main','Time when last activity ended: {}.'.format(lastActivity))
-                printlog('Main','Still alive!')
-                              
-                #TODO: do its own timer?
-                check_for_reboot()
-                
+                printlog('Main','Still alive!')                
                 pingTimer = datetime.now()
+
+            if (datetime.now() - mediaUpdateTimer).total_seconds() / 60 > 1: 
+              #check every minute TODO: change this
+              update_mediafile()
+              mediaUpdateTimer = datetime.now()
 
             # Checking if should update the request quota for Google Sheets
             # It is 100 requests per 100 seconds (e.g. logging of 100 rows)

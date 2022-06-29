@@ -23,7 +23,8 @@ def init():
 
     # Conditions: 4 audio conditions (white noise included)
     global mediafile
-    today = datetime.now().minute #datetime.now().date()
+    mediafile = None
+    # today = datetime.now().minute #datetime.now().date()
 
     # Dates are start date of the condition
     # for testing use minutes:
@@ -43,16 +44,16 @@ def init():
       period1,period2,period3,period4
     ]
     
-    if today >= period4:
-      mediafile = configs.audio4
-    elif today >= period3:
-      mediafile = configs.audio3
-    elif today >= period2:
-      mediafile = configs.audio2
-    elif today >= period1:
-      mediafile = configs.audio1
-    else:
-      mediafile = None
+    # if today >= period4:
+    #   mediafile = configs.audio4
+    # elif today >= period3:
+    #   mediafile = configs.audio3
+    # elif today >= period2:
+    #   mediafile = configs.audio2
+    # elif today >= period1:
+    #   mediafile = configs.audio1
+    # else:
+      
 
     global usingAudio
     usingAudio = False

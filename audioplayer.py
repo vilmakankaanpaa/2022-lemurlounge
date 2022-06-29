@@ -30,10 +30,10 @@ class AudioPlayer:
       self.load_audio(audioFile)
 
     def play_audio(self):
-      mixer.music.pause()
+      mixer.music.unpause()
 
     def stop_audio(self):
-      mixer.music.unpause()
+      mixer.music.pause()
 
     def is_playing(self):
 

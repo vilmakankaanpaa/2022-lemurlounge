@@ -52,7 +52,7 @@ sys.excepthook = sys.__excepthook__
 #         pass
 
 
-def update_mediafile(switches):
+def update_mediafile(switches, logger):
 
   today = datetime.now().minute #datetime.now().date()
 
@@ -75,6 +75,8 @@ def update_mediafile(switches):
     media = configs.audio4 #default to whitenoise
 
   if globals.mediafile != media:
+    logger.log_system_status('Main', 'Media change: from {} to {}.'.format(globals.mediafile, media))
+    printlog('Main','Media change: from {} to {}.'.format(globals.mediafile, media))
     globals.mediafile = media
     switches.triggerAudioChange()
 
@@ -158,7 +160,7 @@ if __name__ == "__main__":
 
     try:
         switches = Switches(logger, camera, mic)
-        update_mediafile(switches) # pick the correct media to use
+        update_mediafile(switches, logger) # pick the correct media to use
 
         logger.log_program_run_info()
         logger.log_system_status('Main','Tunnel started.')
@@ -178,7 +180,7 @@ if __name__ == "__main__":
 
             if (datetime.now() - mediaUpdateTimer).total_seconds() / 60 > 1: 
               #check every minute TODO: change this
-              update_mediafile(switches)
+              update_mediafile(switches, logger)
               mediaUpdateTimer = datetime.now()
 
             # Checking if should update the request quota for Google Sheets

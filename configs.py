@@ -16,11 +16,11 @@ MIC_RECORDINGS_backup = root + 'mic-records/'
 # file names
 audiopath = root + 'audio/'
 # use 'configs.audiopath' + audioX + '.mp3'
-#audio1 = 'zen'
 audio1 = 'rain'
 audio2 = 'traffic'
 audio3 = 'music'
-audio4 = 'whitenoise'
+audio4 = 'zen'
+audio5 = 'whitenoise'
 
 # video files
 videopath = root + 'video/'

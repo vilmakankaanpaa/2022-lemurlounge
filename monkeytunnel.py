@@ -151,6 +151,7 @@ if __name__ == "__main__":
     # Timer to avoid uploading data during and right after interactions
     #ix_timer = datetime.now()
 
+    # TODO: combine with the pingtimer..
     mediaUpdateTimer = datetime.now()
 
     lastActivity = datetime.now()
@@ -182,6 +183,11 @@ if __name__ == "__main__":
               #check every minute TODO: change this
               update_mediafile(switches, logger)
               mediaUpdateTimer = datetime.now()
+
+              while(datetime.now().hour >= 18 or datetime.now() < 6):
+                printlog('Main','Time is {}, going to sleep for an hour.'.format(datetime.now().hour))
+                logger.log_system_status('Main','Time is {}, going to sleep for an hour.'.format(datetime.now().hour))
+                sleep(60*60) # sleep for an hour at a time
 
             # Checking if should update the request quota for Google Sheets
             # It is 100 requests per 100 seconds (e.g. logging of 100 rows)

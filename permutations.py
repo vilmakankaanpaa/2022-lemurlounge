@@ -51,3 +51,5 @@ def getDictionary():
 
   for key in dict:
     print(key, dict[key])
+
+  return dict

@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 
-from datetime import datetime
+from datetime import date
 import configs
+import os
+import permutations
 
 # Global variables
 def init():
@@ -21,40 +23,6 @@ def init():
     # global mediaorder
     # mediaorder = [None, None, None]
 
-    # Conditions: 4 audio conditions (white noise included)
-    global mediafile
-    mediafile = configs.audio4 # white noise as default
-    # today = datetime.now().minute #datetime.now().date()
-
-    # Dates are start date of the condition
-    # for testing use minutes:
-    period1 = 14 # datetime.date.fromisoformat(configs.period1Date) where e.g. congis.period1Date = '2022-06-31'
-    period2 = 15
-    period3 = 16
-    period4 = 17
-
-    global periodDates 
-    # periodDates = [
-    #   datetime.date.fromisoformat(configs.period1Date),
-    #   datetime.date.fromisoformat(configs.period2Date),
-    #   datetime.date.fromisoformat(configs.period3Date),
-    #   datetime.date.fromisoformat(configs.period4Date)
-    # ]
-    periodDates = [
-      period1,period2,period3,period4
-    ]
-    
-    # if today >= period4:
-    #   mediafile = configs.audio4
-    # elif today >= period3:
-    #   mediafile = configs.audio3
-    # elif today >= period2:
-    #   mediafile = configs.audio2
-    # elif today >= period1:
-    #   mediafile = configs.audio1
-    # else:
-      
-
     global usingAudio
     usingAudio = False
     global usingVideo
@@ -66,6 +34,28 @@ def init():
         usingVideo = True
     elif testMode == 3: # No stimulus, but with black video
         usingVideo = True
+
+    # Media changing daily
+    global mediafile 
+    mediafile = configs.audio4 # white noise as default
+
+    if not os.path.exists('contentOrder.txt'):
+      audios = [
+        configs.audio1,
+        configs.audio2,
+        configs.audio3,
+        configs.audio4,
+        configs.audio5
+        ]
+      permutations.createNewOrder(
+        content=audios, 
+        startDate=date.today().isoformat(), 
+        contentDays=7
+        )
+    
+    # Dictionary for the dates when the media file is switched and the new value
+    global datesForMediaChange
+    datesForMediaChange = permutations.getDictionary()        
 
     # use camera to record interactions
     global recordingOn

@@ -4,7 +4,7 @@
 import os
 import sys
 from time import sleep
-from datetime import datetime
+from datetime import datetime, date
 
 # Local sources
 from filemanager import check_disk_space, printlog, get_directory_for_recordings, log_local
@@ -12,7 +12,7 @@ from logger import Logger
 from camera import Camera
 from microphone import Microphone
 from switches import Switches
-import configs
+#import configs
 import globals
 
 sys.excepthook = sys.__excepthook__
@@ -51,17 +51,19 @@ sys.excepthook = sys.__excepthook__
 
 def update_mediafile(switches, logger):
 
-  today = datetime.now().minute #datetime.now().date()
-
-  #datesDict = globals.datesForMediaChange
-  datesDict = {
-    12 : configs.audio1,
-    14 : configs.audio2,
-    16 : configs.audio3,
-    18 : configs.audio4,
-  }
-
+  printlog('Main','Checking date for switchin media')
   # today must be in '2022-01-01' format: datetime.date.fromisoformat(today)
+  today = date.today().isoformat()
+  printlog('Main','date today in ISOf:', today)
+
+  datesDict = globals.datesForMediaChange
+  printlog('Main','Dates dict: ', datesDict)
+  # datesDict = {
+  #   12 : configs.audio1,
+  #   14 : configs.audio2,
+  #   16 : configs.audio3,
+  #   18 : configs.audio4,
+  # }
   media = globals.mediafile
   if today in datesDict:
     media = datesDict[today]

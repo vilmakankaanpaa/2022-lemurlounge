@@ -55,14 +55,14 @@ def update_mediafile(switches, logger):
 
   #datesDict = globals.datesForMediaChange
   datesDict = {
-    10 : configs.audio1,
-    11 : configs.audio2,
-    12 : configs.audio3,
-    13 : configs.audio4,
+    12 : configs.audio1,
+    14 : configs.audio2,
+    16 : configs.audio3,
+    18 : configs.audio4,
   }
 
   # today must be in '2022-01-01' format: datetime.date.fromisoformat(today)
-  media # initialize
+  media = globals.mediafile
   if today in datesDict:
     media = datesDict[today]
 
@@ -176,7 +176,8 @@ if __name__ == "__main__":
               update_mediafile(switches, logger)
               mediaUpdateTimer = datetime.now()
 
-              while(datetime.now().hour >= 18 or datetime.now() < 6):
+              hourNow = datetime.now().hour
+              while(hourNow >= 18 or hourNow < 6):
                 printlog('Main','Time is {}, going to sleep for an hour.'.format(datetime.now().hour))
                 logger.log_system_status('Main','Time is {}, going to sleep for an hour.'.format(datetime.now().hour))
                 sleep(60*60) # sleep for an hour at a time

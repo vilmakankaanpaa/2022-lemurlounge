@@ -3,10 +3,8 @@
 
 import os
 import sys
-#import RPi.GPIO as GPIO
 from time import sleep
-from datetime import datetime #, date, time
-#import random
+from datetime import datetime
 
 # Local sources
 from filemanager import check_disk_space, printlog, get_directory_for_recordings, log_local
@@ -16,7 +14,6 @@ from microphone import Microphone
 from switches import Switches
 import configs
 import globals
-#from ir_sensors import Sensors
 
 sys.excepthook = sys.__excepthook__
 
@@ -56,23 +53,18 @@ def update_mediafile(switches, logger):
 
   today = datetime.now().minute #datetime.now().date()
 
-  # Dates are start date of the condition
-  # for testing use minutes:
-  period1 = 14 # datetime.date.fromisoformat(configs.period1Date) where e.g. congis.period1Date = '2022-06-31'
-  period2 = 15
-  period3 = 16
-  period4 = 17
-  
-  if today >= period4:
-    media = configs.audio4
-  elif today >= period3:
-    media = configs.audio3
-  elif today >= period2:
-    media = configs.audio2
-  elif today >= period1:
-    media = configs.audio1
-  else:
-    media = configs.audio4 #default to whitenoise
+  #datesDict = globals.datesForMediaChange
+  datesDict = {
+    10 : configs.audio1,
+    11 : configs.audio2,
+    12 : configs.audio3,
+    13 : configs.audio4,
+  }
+
+  # today must be in '2022-01-01' format: datetime.date.fromisoformat(today)
+  media # initialize
+  if today in datesDict:
+    media = datesDict[today]
 
   if globals.mediafile != media:
     logger.log_system_status('Main', 'Media change: from {} to {}.'.format(globals.mediafile, media))

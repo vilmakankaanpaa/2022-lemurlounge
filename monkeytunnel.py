@@ -54,10 +54,10 @@ def update_mediafile(switches, logger):
   printlog('Main','Checking date for switchin media')
   # today must be in '2022-01-01' format: datetime.date.fromisoformat(today)
   today = date.today().isoformat()
-  printlog('Main','date today in ISOf:', today)
+  printlog('Main','date today in ISOf:{}'.format(today))
 
   datesDict = globals.datesForMediaChange
-  printlog('Main','Dates dict: ', datesDict)
+  printlog('Main','Dates dict: {}'.format(datesDict))
   # datesDict = {
   #   12 : configs.audio1,
   #   14 : configs.audio2,

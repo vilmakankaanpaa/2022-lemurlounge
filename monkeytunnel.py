@@ -173,8 +173,8 @@ if __name__ == "__main__":
                 printlog('Main','Still alive!')                
                 pingTimer = datetime.now()
 
-            if (datetime.now() - mediaUpdateTimer).total_seconds() / 60 > 1: 
-              #check every minute TODO: change this
+            if (datetime.now() - mediaUpdateTimer).total_seconds() / 60 > 20: 
+              # check every 20 minutes
               update_mediafile(switches, logger)
               mediaUpdateTimer = datetime.now()
 

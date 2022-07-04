@@ -14,6 +14,8 @@ def createNewOrder(
   # stimuli: list of the stimuli content
   # startDate: start date of the study (e.g. '2022-07-01')
 
+  print('Generating new file contentOrder.txt.')
+
   perm = permutations(content)
   perm = list(perm)
 
@@ -46,7 +48,7 @@ def getDictionary():
   dict = {}
 
   for line in results:
-    print(line)
+    #print(line)
     dict.update({line[0:10] : line[11:-1]}) # -1 so that the line divider \n is not read too
 
   # for key in dict:

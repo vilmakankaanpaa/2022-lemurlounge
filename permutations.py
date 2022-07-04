@@ -49,7 +49,7 @@ def getDictionary():
     print(line)
     dict.update({line[0:10] : line[11:-1]}) # -1 so that the line divider \n is not read too
 
-  for key in dict:
-    print(key, dict[key])
+  # for key in dict:
+  #   print(key, dict[key])
 
   return dict

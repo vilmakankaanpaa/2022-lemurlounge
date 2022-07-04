@@ -178,8 +178,7 @@ if __name__ == "__main__":
               update_mediafile(switches, logger)
               mediaUpdateTimer = datetime.now()
 
-              hourNow = datetime.now().hour
-              while(hourNow >= 18 or hourNow < 6):
+              while(datetime.now().hour >= 18 or datetime.now().hour < 6):
                 printlog('Main','Time is {}, going to sleep for an hour.'.format(datetime.now().hour))
                 logger.log_system_status('Main','Time is {}, going to sleep for an hour.'.format(datetime.now().hour))
                 sleep(60*60) # sleep for an hour at a time

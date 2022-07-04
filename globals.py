@@ -41,7 +41,6 @@ def init():
 
   
     if not os.path.exists('/home/pi/lemur-audio-player/contentOrder.txt'):
-      print('no such file')
       audios = [
         configs.audio1,
         configs.audio2,

@@ -7,7 +7,7 @@ from time import sleep
 from datetime import datetime, date
 
 # Local sources
-from filemanager import check_disk_space, printlog, get_directory_for_recordings, log_local
+from filemanager import printlog, log_local #check_disk_space, get_directory_for_recordings, 
 from logger import Logger
 from camera import Camera
 from microphone import Microphone
@@ -54,10 +54,8 @@ def update_mediafile(switches, logger):
   printlog('Main','Checking date for switchin media')
   # today must be in '2022-01-01' format: datetime.date.fromisoformat(today)
   today = date.today().isoformat()
-  printlog('Main','date today in ISOf:{}'.format(today))
 
   datesDict = globals.datesForMediaChange
-  printlog('Main','Dates dict: {}'.format(datesDict))
   # datesDict = {
   #   12 : configs.audio1,
   #   14 : configs.audio2,
@@ -141,7 +139,7 @@ if __name__ == "__main__":
     #uploadData_timer = datetime.now()
     # Timer for when disk space should be checked
     #checkSpace_timer = datetime.now()
-    pingTimer = datetime.now()
+    # pingTimer = datetime.now()
     # Timer to avoid uploading data during and right after interactions
     #ix_timer = datetime.now()
 
@@ -167,11 +165,11 @@ if __name__ == "__main__":
 
         while True:
 
-            if (datetime.now() - pingTimer).total_seconds() / 60 > 10:
-                #ping every 10 minutes
-                logger.log_system_status('Main','Time when last activity ended: {}.'.format(lastActivity))
-                printlog('Main','Still alive!')                
-                pingTimer = datetime.now()
+            # if (datetime.now() - pingTimer).total_seconds() / 60 > 10:
+            #     #ping every 10 minutes
+            #     logger.log_system_status('Main','Time when last activity ended: {}.'.format(lastActivity))
+            #     printlog('Main','Still alive!')                
+            #     pingTimer = datetime.now()
 
             if (datetime.now() - mediaUpdateTimer).total_seconds() / 60 > 20: 
               # check every 20 minutes

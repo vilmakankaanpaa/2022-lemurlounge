@@ -37,7 +37,7 @@ def init():
 
     # Media changing daily
     global mediafile 
-    mediafile = configs.audio4 # white noise as default
+    mediafile = configs.audio5 # white noise as default
 
   
     if not os.path.exists('/home/pi/lemur-audio-player/contentOrder.txt'):

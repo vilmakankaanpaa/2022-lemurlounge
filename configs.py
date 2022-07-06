@@ -44,7 +44,7 @@ period4Date = '2022-08-13'
 local_ix_log = external_disk + 'logs/ix_logs.csv'
 local_program_log = external_disk + 'logs/progrun_logs.csv'
 local_system_log = external_disk + 'logs/system_logs.csv'
-local_printlog = 'printlog.csv'
+local_printlog = 'printlog.txt'
 local_output = 'output.txt'
 # To store file names not being able to upload
 # local_uploadlog = "uploadlog.txt"

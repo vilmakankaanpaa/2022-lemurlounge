@@ -18,7 +18,7 @@ def printlog(srcfile, msg):
     data = [[timestamp, srcfile, msg]]
 
     # print to a file
-    #log_local(data=data, sheet=configs.local_printlog)
+    log_local(data=data, sheet=configs.local_printlog)
 
     # print to terminal
     print(timestamp,msg)

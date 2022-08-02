@@ -283,7 +283,9 @@ if __name__ == "__main__":
         if camera.is_recording:
             printlog('Exit','Stopping camera recording.')
             camera.stop_recording()
-            camera.close()
+        
+        camera.close()
+        
         if mic.is_recording:
             printlog('Exit','Stopping mic recording.')
             mic.stop()

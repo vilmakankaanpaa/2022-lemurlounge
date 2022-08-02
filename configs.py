@@ -41,9 +41,9 @@ period4Date = '2022-08-13'
 # local logfile names
 # local_ix_log = 'ix_backup.csv'
 # local_program_log = 'progrun_backup.csv'
-local_ix_log = external_disk + 'logs/ix_logs.csv'
-local_program_log = external_disk + 'logs/progrun_logs.csv'
-local_system_log = external_disk + 'logs/system_logs.csv'
+local_ix_log = 'logs/ix_logs.csv'
+local_program_log = 'logs/progrun_logs.csv'
+local_system_log = 'logs/system_logs.csv'
 local_printlog = 'printlog.txt'
 local_output = 'output.txt'
 # To store file names not being able to upload
@@ -52,15 +52,12 @@ local_output = 'output.txt'
 
 # Google sheets API parameters for logging data
 SPREADSHEET_ID = '1qh6czdoIkbHTeeRIu6tQZmIGVsXYSKScXbcqotv6nMU'
-#SPREADSHEET_ID = '1-sFTPHnKqSMEMJ6mKf0D3lMXn77QECNJbL_vR-Prskg'
 IX_SHEET = 'interactions'
 STARTS_SHEET = 'system-starts'
 PING_SHEET = 'ping-alive'
 SYSTEM_SHEET = 'system-status'
 
 # Google Drive API parameters for uploading listDriveFiles
-#GDRIVE_FOLDER_ID = '1F-kDuVRUCY_HZTpls-HjgoMZfQsHHsFy'  #recordings
-#GDRIVE_FOLDER_ID_LOGS = '1ZhqiXGb0yIBRg-h_UlASro2tIVav0YmO'  #system logs
 GDRIVE_FOLDER_ID = '1atA3l6nSu8SaRNU_Bo2t5R-FIM73YmC5'  #recordings
 GDRIVE_FOLDER_ID_LOGS = '1AS0sOxC3veNfWZnxMqnZ8jPKdcK3_BxI'  #system logs
 

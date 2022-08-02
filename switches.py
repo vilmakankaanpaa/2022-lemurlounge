@@ -6,7 +6,7 @@ from datetime import datetime
 from filemanager import printlog, get_directory_for_recordings
 from ir_sensors import Sensors
 from audioplayer import AudioPlayer
-from videoplayer import VideoPlayer
+#from videoplayer import VideoPlayer
 import globals
 import configs
 

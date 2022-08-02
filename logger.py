@@ -162,6 +162,8 @@ class Logger:
         self.ix_content = None
 
         # log this data to logal csv file (for full offline use only)
+        # when online, data is later logged from tempdata triggered from 
+        # monkeytunnel
         try:
           filemanager.log_local(self.ix_tempdata, configs.local_ix_log)
           self.ix_tempdata = []

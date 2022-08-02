@@ -25,8 +25,14 @@ def printlog(srcfile, msg):
 
 
 def log_local(data, sheet):
+    # log to a file on usb or rpi
 
-    with open(sheet, 'a', newline='') as logfile:
+    path = configs.root + sheet
+    usb = check_usb_disk_access()
+    if usb:
+        path = configs.external_disk + sheet
+
+    with open(path, 'a', newline='') as logfile:
         logwriter = csv.writer(logfile, delimiter=',')
         for row in data:
             logwriter.writerow(row)

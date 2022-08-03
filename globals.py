@@ -50,8 +50,8 @@ def init():
         ]
       permutations.createNewOrder(
         content=audios, 
-        startDate=date.today().isoformat(), 
-        contentDays=7
+        startDate='2022-08-06', # saturday 6th August 
+        contentDays=8
         )
     
     # Dictionary for the dates when the media file is switched and the new value

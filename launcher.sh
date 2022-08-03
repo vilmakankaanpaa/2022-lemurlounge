@@ -11,7 +11,7 @@
 
 # move the mouse to different location, because at the start it would be on
 # the left corner and would trigger the task bar and leave it there
-xdotool mousemove 100 100
+#xdotool mousemove 100 100
 
 # start the monkeytunnel program
 cd /home/pi/lemur-audio-player

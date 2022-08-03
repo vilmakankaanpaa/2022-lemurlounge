@@ -10,7 +10,7 @@ class AudioPlayer:
 
     def load_audio(self, audioFile):
       mixer.music.load(audioFile)
-      mixer.music.set_volume(1.0)
+      mixer.music.set_volume(0.7)
       mixer.music.play(loops=-1)
       mixer.music.pause()
 

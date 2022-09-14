@@ -110,7 +110,7 @@ class Logger:
         #     filemanager.log_local(data, sheet=configs.local_program_log)
 
     def start_ixPeriod(self):
-        self.ix_period = str(uuid.uuid4())[0:4]
+        self.ix_period = str(uuid.uuid4())[0:7]
 
     def end_ixPeriod(self):
         self.ix_period = None

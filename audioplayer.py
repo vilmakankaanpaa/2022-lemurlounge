@@ -11,6 +11,9 @@ class AudioPlayer:
     def load_audio(self, audioFile):
       mixer.music.load(audioFile)
       mixer.music.set_volume(0.7)
+      if (audioFile == '/home/pi/lemur-audio-player/audio/whitenoise.mp3'):
+        print('volume set to 0.48 for whitenoise')
+        mixer.music.set_volume(0.3)
       mixer.music.play(loops=-1)
       mixer.music.pause()
 

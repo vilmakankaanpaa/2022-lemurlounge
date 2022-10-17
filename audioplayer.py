@@ -20,8 +20,11 @@ class AudioPlayer:
     def play_audio(self):
       mixer.music.unpause()
 
-    def stop_audio(self):
+    def pause_audio(self):
       mixer.music.pause()
+
+    def stop_audio(self):
+      mixer.music.stop()
 
     def is_playing(self):
 

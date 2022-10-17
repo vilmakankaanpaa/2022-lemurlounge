@@ -10,9 +10,9 @@ token.json
 # Local log files used in case of error to log to Google Drive
 *.csv
 
-# Recordings of the camera module
 camera-records/*.h264
 mic-records/*.wav
+logs
 
 # Print outputs
 output.txt

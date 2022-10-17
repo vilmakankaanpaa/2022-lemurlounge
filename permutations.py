@@ -1,38 +1,42 @@
 from itertools import permutations
 import random
-from datetime import datetime, timedelta, date
+import datetime
 
-# Used this file to get exactly right amount of each stimuli to be varied daily
+fileName = 'contentorder.txt'
 
-fileName = 'contentOrder.txt'
-
-def createNewOrder(
-  content=['rain','traffic','music','zen','whitenoise'], 
+def newOrder(
+  content=['a','b','c'], 
   startDate='2022-07-01', 
-  contentDays=7):
+  occurrences=7,
+  cycle=1):
   
-  # stimuli: list of the stimuli content
+  # content: list of the content to be alternating
   # startDate: start date of the study (e.g. '2022-07-01')
+  # occurrences: how many times a single content should occur during 
+  #              the span of the study
+  # cycle: how many days a content should be played in a row 
+  #              (e.g. 3 days of file A, 3 dyas of file B, etc.)
 
-  print('Generating new file contentOrder.txt.')
-
-  perm = permutations(content)
+  perm = permutations(content) # create all possible permutations with content
   perm = list(perm)
 
-  orderlist = []
+  orderlist = [] 
 
-  for i in range(0,contentDays-1):
+  # Pick random permutations from all options and save as 
+  # single continuous list
+  for i in range(0,occurrences-1):
     choice = random.choice(perm)
     for stimulus in choice:
       orderlist.append(stimulus)
 
   alternatedates = {}
+  date = datetime.date.fromisoformat(startDate)
 
-  startDate = date.fromisoformat(startDate)
-
-  for i in range(0,len(orderlist)-1):
-    newDate = startDate + timedelta(days=i)
-    alternatedates.update({ newDate : orderlist[i] })
+  # Starting from the given date, assign starting dates for each 
+  # occurrence of contents
+  for i in range(0, len(orderlist)-1):
+    date += datetime.timedelta(days=cycle)
+    alternatedates.update({ date : orderlist[i] })
 
   f = open(fileName,'w')
   for key in alternatedates:
@@ -46,10 +50,8 @@ def getDictionary():
   f.close()
 
   dict = {}
-
   for line in results:
-    #print(line)
-    dict.update({line[0:10] : line[11:-1]}) # -1 so that the line divider \n is not read too
+    dict.update({line[0:10] : line[11:-1]}) # -1 so that the line divider \n is left behind.
 
   # for key in dict:
   #   print(key, dict[key])

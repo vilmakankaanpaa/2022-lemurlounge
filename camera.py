@@ -40,9 +40,8 @@ class Camera():
         # Note: it’s important to sleep for at least two seconds
         # before capturing an image, because this gives the camera’s
         # sensor time to sense the light levels.
-        path = '/home/pi/sakis-tunnel-2021/'
         sleep(5)
-        self.camera.capture(path + imageName + '.jpg')
+        self.camera.capture(imageName + '.jpg')
         self.camera.stop_preview()
 
     def close(self):

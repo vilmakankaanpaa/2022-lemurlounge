@@ -116,5 +116,5 @@ class Logger:
 
     def new_recording_name(self):
 
-        self.ix_recording = (self.ix_start).strftime("%Y-%m-%d_%H-%M") + '_' + self.ix_period
+        self.ix_recording = (self.ix_start).strftime("%Y-%m-%d_%H-%M-%S") + '_' + self.ix_period
         return self.ix_recording

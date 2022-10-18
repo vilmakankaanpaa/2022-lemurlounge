@@ -49,13 +49,14 @@ if __name__ == "__main__":
     printlog('Main',datetime.isoformat(datetime.now()))
     globals.pid = os.getpid()
 
-    start = datetime.now()
-    while not os.path.isdir(configs.external_disk):
-      printlog('Main','Usb not found yet, sleeping')
-      sleep(10)
-      if (datetime.now()-start).total_seconds() > 180:
-        printlog('Main','USB still not found after 3 minutes, exiting')
-        exit(0)
+    if globals.usingUSB:
+        start = datetime.now()
+        while not os.path.isdir(configs.external_disk):
+          printlog('Main','Usb not found yet, sleeping')
+          sleep(10)
+          if (datetime.now()-start).total_seconds() > 180:
+            printlog('Main','USB still not found after 3 minutes, exiting')
+            exit(0)
 
     printlog('Main','Starting up monkeytunnel..')
 
@@ -145,10 +146,6 @@ if __name__ == "__main__":
         if mic.is_recording:
             printlog('Exit','Stopping mic recording.')
             mic.stop()
-
-        if globals.videoPlayer != None:
-            printlog('Exit','Stopping video.')
-            globals.videoPlayer.stop_video()
 
         if globals.audioPlayer.is_playing():
             printlog('Exit','Stopping audio.')

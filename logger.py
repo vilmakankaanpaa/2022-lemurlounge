@@ -46,11 +46,8 @@ class Logger:
         data = [
             self.pid,
             timestamp,
-            globals.testMode,
-            globals.usingVideo,
             globals.usingAudio,
-            globals.recordingOn,
-            globals.ordername]
+            globals.recordingOn]
 
         data = [data]
 

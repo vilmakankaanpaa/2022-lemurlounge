@@ -6,14 +6,14 @@ import os
 import permutations
 
 def init():
-    
+
     global usingUSB
     usingUSB = True
 
     global usingAudio
     usingAudio = True
 
-    global mediafile 
+    global mediafile
     mediafile = 'whitenoise'
 
     if not os.path.exists('/home/pi/lemur-audio-player/contentOrder.txt'):
@@ -26,12 +26,12 @@ def init():
         configs.audio6
         ]
       permutations.newOrder(
-        content=audios, 
-        startDate='2022-10-27', # YYYY-MM-DD
+        content=audios,
+        startDate='2022-10-26', # YYYY-MM-DD
         occurrences=8,
         cycle=1
         )
-    
+
     # Dictionary for the dates when the media file is switched and the new value
     global datesForMediaChange
     datesForMediaChange = permutations.getDictionary()

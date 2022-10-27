@@ -5,6 +5,7 @@ import os
 import sys
 from time import sleep
 from datetime import datetime, date
+from audioplayer import AudioPlayer
 
 # Local sources
 from filemanager import printlog, log_local
@@ -147,7 +148,7 @@ if __name__ == "__main__":
             printlog('Exit','Stopping mic recording.')
             mic.stop()
 
-        if globals.audioPlayer.is_playing():
+        if not AudioPlayer.has_quit():
             printlog('Exit','Stopping audio.')
             globals.audioPlayer.stop_audio()
 

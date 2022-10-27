@@ -11,7 +11,7 @@ class Microphone():
 
         if not self.is_recording:
             filepath = configs.MIC_RECORDINGS + filename + '.wav'
-            self.recorder = subprocess.Popen(args=["arecord", "--format=S16_LE", "--file-type=wav", filepath], stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
+            self.recorder = subprocess.Popen(args=["arecord","-D","plughw:1,0","-f","dat",filepath], stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
             self.is_recording = True
 
     def stop(self):

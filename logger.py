@@ -81,19 +81,13 @@ class Logger:
         startime = self.ix_start
         duration = round((endtime - self.ix_start).total_seconds(),2)
 
-        stimulus = 'no-stimulus'
-        if globals.testMode == 1:
-            stimulus = 'audio'
-        elif globals.testMode == 2:
-            stimulus = 'visual'
-
         switchesOpen = self.ix_switchesOpen
         volts = self.ix_voltReadings
         content = self.ix_content
         video = self.ix_recording + '.h264'
 
-        data = [pid, period, ID, date, stimulus,
-        content, switchesOpen, volts, startime.strftime("%Y-%m-%d %H:%M:%S"),
+        data = [pid, period, ID, date, content, 
+        switchesOpen, volts, startime.strftime("%Y-%m-%d %H:%M:%S"),
         endtime.strftime("%Y-%m-%d %H:%M:%S"), duration, video]
 
         self.ix_tempdata.append(data)

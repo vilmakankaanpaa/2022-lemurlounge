@@ -5,7 +5,7 @@
 
 # roots
 root = '/home/pi/lemur-audio-player/'
-external_disk = '/media/pi/8F57-C519/'
+external_disk = '/media/pi/SANDISK/'
 
 # paths to use
 RECORDINGS_PATH = external_disk + 'camera-records/'
@@ -21,6 +21,7 @@ audio2 = 'traffic'
 audio3 = 'music'
 audio4 = 'zen'
 audio5 = 'whitenoise'
+audio6 = 'none'
 
 # local logfiles
 local_ix_log = 'logs/ix_logs.csv'

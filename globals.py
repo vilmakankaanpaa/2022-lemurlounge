@@ -8,7 +8,7 @@ import permutations
 def init():
     
     global usingUSB
-    usingUSB = False
+    usingUSB = True
 
     global usingAudio
     usingAudio = True
@@ -23,11 +23,11 @@ def init():
         configs.audio3,
         configs.audio4,
         configs.audio5,
-        "None"
+        configs.audio6
         ]
       permutations.newOrder(
         content=audios, 
-        startDate='2022-10-18', # YYYY-MM-DD
+        startDate='2022-10-27', # YYYY-MM-DD
         occurrences=8,
         cycle=1
         )

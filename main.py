@@ -34,9 +34,9 @@ def update_mediafile(controller, logger):
     printlog('Main','Media change: from {} to {}.'.format(globals.mediafile, media))
     globals.mediafile = media
 
-    if media == None:
+    if media == 'none':
         globals.usingAudio = False
-    elif media != None:
+    elif media != 'none':
         globals.usingAudio = True
 
     controller.triggerAudioChange()

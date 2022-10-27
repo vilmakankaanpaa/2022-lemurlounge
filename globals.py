@@ -16,7 +16,7 @@ def init():
     global mediafile
     mediafile = 'whitenoise'
 
-    if not os.path.exists('/home/pi/lemur-audio-player/contentOrder.txt'):
+    if not os.path.exists('/home/pi/lemur-audio-player/contentorder.txt'):
       audios = [
         configs.audio1,
         configs.audio2,
@@ -27,8 +27,8 @@ def init():
         ]
       permutations.newOrder(
         content=audios,
-        startDate='2022-10-26', # YYYY-MM-DD
-        occurrences=8,
+        startDate='2022-10-29', # YYYY-MM-DD
+        occurrences=10,
         cycle=1
         )
 

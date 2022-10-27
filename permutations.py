@@ -35,8 +35,8 @@ def newOrder(
   # Starting from the given date, assign starting dates for each 
   # occurrence of contents
   for i in range(0, len(orderlist)-1):
-    alternatedates.update({ date : orderlist[i] })
     date += datetime.timedelta(days=cycle)
+    alternatedates.update({ date : orderlist[i] })
 
   f = open(fileName,'w')
   for key in alternatedates:

@@ -148,7 +148,7 @@ if __name__ == "__main__":
             printlog('Exit','Stopping mic recording.')
             mic.stop()
 
-        if not AudioPlayer.has_quit():
+        if not globals.audioPlayer.has_quit():
             printlog('Exit','Stopping audio.')
             globals.audioPlayer.stop_audio()
 

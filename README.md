@@ -13,6 +13,6 @@ the device records the interaction with a camera and a speaker
 (to ensure the audio is playing correctly), and logs details into a spreadsheet.
 
 This version of the device is running completely offline because the internet
-connection in the zoo was not sufficient.
+connection in the zoo was not sufficient. Previous releases use Google Drive and Sheets API.
 
 ![](/images/lemurlounge.jpg)
